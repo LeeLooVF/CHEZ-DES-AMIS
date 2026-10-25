@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHEZ DES AMIS — Bistrot Créatif & Cuisine Fait Maison | 80 En Fournirue, Metz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: '#0B0A09',
+                        slateWarm: '#141210',
+                        slateCard: '#1C1916',
+                        copper: '#DC2626',
+                        brass: '#E5C158',
+                        chalk: '#F4F1EA',
+                        stoneMuted: '#A39E93'
+                    },
+                    fontFamily: {
+                        display: ['"Fraunces"', 'serif'],
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B0A09;
+            color: #F4F1EA;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-display {
+            font-family: 'Fraunces', serif;
+        }
+        /* Texture grain subtile façon papier ardoise */
+        .bg-grain {
+            background-image: radial-gradient(rgba(229, 193, 88, 0.06) 1px, transparent 0);
+            background-size: 28px 28px;
+        }
+        /* Animation au scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Bandeau défilant (Marquee) */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+        /* Lignes pointillées du menu bistrot */
+        .menu-leader {
+            flex-grow: 1;
+            border-bottom: 1px dashed rgba(163, 158, 147, 0.3);
+            margin: 0 16px;
+            transform: translateY(-6px);
+        }
+        /* Bordures architecturales */
+        .border-architect {
+            border-color: rgba(229, 193, 88, 0.18);
+        }
+    </style>
+</head>
+<body class="bg-grain selection:bg-copper selection:text-white">
+
+    <!-- NAVIGATION ARCHITECTURALE SOMBRE -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-ink/90 backdrop-blur-md border-b border-architect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Identité & Logo -->
+            <a href="#" class="flex items-center gap-4 group shrink-0">
+                <div class="w-12 h-12 rounded-none border border-brass/50 overflow-hidden bg-slateWarm p-0.5 shrink-0">
+                    <img data-img="830670197_28611309638527680_8202904169236157139_n.jpg"
+                         src="Images/830670197_28611309638527680_8202904169236157139_n.jpg"
+                         alt="Logo Chez des Amis"
+                         class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div>
+                    <span class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-chalk block leading-none">
+                        CHEZ DES <span class="italic font-normal text-copper">AMIS</span>
+                    </span>
+                    <span class="text-[10px] uppercase tracking-[0.28em] text-stoneMuted block mt-1">
+                        80 En Fournirue • Metz
+                    </span>
+                </div>
+            </a>
+
+            <!-- Liens centraux -->
+            <nav class="hidden lg:flex items-center gap-9 text-xs uppercase tracking-[0.2em] font-semibold text-chalk/80">
+                <a href="#esprit" class="hover:text-brass transition">L'Esprit</a>
+                <a href="#ardoise" class="hover:text-brass transition">L'Ardoise & La Carte</a>
+                <a href="#galerie" class="hover:text-brass transition">L'Assiette en Images</a>
+                <a href="#reserver" class="hover:text-brass transition">Réserver</a>
+                <a href="#acces" class="hover:text-brass transition">Horaires & Lieu</a>
+            </nav>
+
+            <!-- Actions Droite : Téléphone sur 1 seule ligne + Bouton franc -->
+            <div class="flex items-center gap-3 shrink-0">
+                <a href="tel:0612917128" class="hidden sm:inline-flex items-center gap-2.5 px-4 py-2.5 border border-architect text-xs font-bold tracking-widest uppercase text-chalk hover:border-brass hover:text-brass transition whitespace-nowrap shrink-0">
+                    <i data-lucide="phone" class="w-3.5 h-3.5 text-copper shrink-0"></i>
+                    <span class="whitespace-nowrap">06 12 91 71 28</span>
+                </a>
+                <a href="#reserver" class="inline-flex items-center gap-2 px-5 py-2.5 bg-copper hover:bg-brass hover:text-ink text-white text-xs font-bold uppercase tracking-widest transition whitespace-nowrap shrink-0">
+                    <span>Table</span>
+                    <i data-lucide="arrow-down-right" class="w-4 h-4 shrink-0"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION : CINÉMATIQUE & ASYMÉTRIQUE -->
+    <section class="relative min-h-screen pt-20 flex flex-col justify-between border-b border-architect overflow-hidden">
+        <!-- Lignes de grille décoratives -->
+        <div class="absolute inset-0 pointer-events-none max-w-7xl mx-auto border-x border-architect"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 pt-12 pb-16 lg:py-24 grid lg:grid-cols-12 gap-10 items-center relative z-10 flex-1">
+            <!-- Colonne Gauche : Typographie Monumentale -->
+            <div class="lg:col-span-7 space-y-8 reveal active">
+                <div class="inline-flex items-center gap-3 px-3.5 py-1.5 bg-slateCard border border-architect text-[11px] uppercase tracking-[0.22em] text-brass">
+                    <span class="w-2 h-2 bg-copper inline-block"></span>
+                    <span>Bistronomie Décomplexée & Produits Frais</span>
+                </div>
+
+                <h1 class="font-display text-5xl sm:text-7xl xl:text-8xl font-bold leading-[0.96] tracking-tight text-chalk">
+                    Allez, viens,<br>
+                    je t'invite <span class="italic font-normal text-copper">Chez des Amis.</span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-stoneMuted max-w-xl leading-relaxed font-normal">
+                    Une table vivante au cœur historique de Metz. Ici, tout est cuisiné maison à partir de produits bruts : pain burger noir à l'encre de seiche, burratas créatives, magret rôti au miel et thym, belles pièces du boucher et pâtisseries du jour.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <a href="#ardoise" class="px-8 py-4 bg-chalk text-ink font-bold text-xs uppercase tracking-[0.2em] hover:bg-brass transition flex items-center gap-3">
+                        <span>Explorer la Carte</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#reserver" class="px-8 py-4 border border-brass/50 text-chalk font-bold text-xs uppercase tracking-[0.2em] hover:bg-copper hover:border-copper transition">
+                        Réserver une Table
+                    </a>
+                </div>
+
+                <!-- Liens Sociaux Directs -->
+                <div class="pt-6 flex flex-wrap items-center gap-6 text-xs uppercase tracking-widest text-stoneMuted border-t border-architect">
+                    <a href="https://www.facebook.com/search/top?q=Chez%20des%20amis%20Metz" target="_blank" rel="noopener noreferrer" class="hover:text-brass transition flex items-center gap-2">
+                        <i data-lucide="facebook" class="w-4 h-4 text-copper"></i>
+                        <span class="underline underline-offset-4">Facebook Officiel</span>
+                    </a>
+                    <a href="https://www.instagram.com/chez.des.amis/" target="_blank" rel="noopener noreferrer" class="hover:text-brass transition flex items-center gap-2">
+                        <i data-lucide="instagram" class="w-4 h-4 text-copper"></i>
+                        <span class="underline underline-offset-4">@chez.des.amis</span>
+                    </a>
+                    <span class="flex items-center gap-2 text-chalk/80">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-brass"></i>
+                        80 En Fournirue, 57000 Metz
+                    </span>
+                </div>
+            </div>
+
+            <!-- Colonne Droite : Composition Brute Superposée -->
+            <div class="lg:col-span-5 relative reveal active">
+                <div class="relative mx-auto max-w-md lg:max-w-none">
+                    <!-- Cadre principal -->
+                    <div class="relative aspect-[4/5] border-2 border-brass/40 bg-slateCard overflow-hidden group cursor-pointer"
+                         onclick="openLightboxByFile('729412949_1571271014564033_6745270389870072008_n.jpg', 'Le Burger Signature au Pain Noir à l\'Encre de Seiche')">
+                        <img data-img="729412949_1571271014564033_6745270389870072008_n.jpg"
+                             src="Images/729412949_1571271014564033_6745270389870072008_n.jpg"
+                             alt="Burger Pain Noir Chez des Amis"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                            <div>
+                                <span class="text-[10px] uppercase tracking-[0.25em] text-brass block">Signature de la Maison</span>
+                                <p class="font-display text-2xl text-chalk">Le Bun Noir à l'Encre de Seiche</p>
+                            </div>
+                            <span class="w-10 h-10 bg-copper text-white flex items-center justify-center shrink-0">
+                                <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Vignette décalée en superposition -->
+                    <div class="hidden sm:block absolute -bottom-8 -left-10 w-48 aspect-square border-2 border-ink bg-slateCard shadow-2xl overflow-hidden cursor-pointer group"
+                         onclick="openLightboxByFile('652440530_1488865539471248_1613849268101534632_n.jpg', 'Nos Burratas aux Accords Surprenants')">
+                        <img data-img="652440530_1488865539471248_1613849268101534632_n.jpg"
+                             src="Images/652440530_1488865539471248_1613849268101534632_n.jpg"
+                             alt="Burrata Créative"
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-x-0 bottom-0 bg-ink/90 px-2.5 py-1.5 text-[10px] uppercase tracking-wider text-brass font-bold">
+                            Burratas Créatives
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BANDEAU DÉFILANT (MARQUEE) BISTROT -->
+        <div class="border-t border-architect bg-slateWarm py-3.5 overflow-hidden select-none">
+            <div class="animate-marquee flex items-center gap-10 text-xs uppercase tracking-[0.28em] font-bold text-Brass">
+                <span class="text-chalk">CUISINE 100% FAIT MAISON</span>
+                <span class="text-copper">✦</span>
+                <span class="text-brass">PAIN BURGER NOIR À L'ENCRE DE SEICHE</span>
+                <span class="text-copper">✦</span>
+                <span class="text-chalk">FRITES DE PATATE DOUCE CROUSTILLANTES</span>
+                <span class="text-copper">✦</span>
+                <span class="text-brass">MAGRET DE CANARD AU MIEL & THYM</span>
+                <span class="text-copper">✦</span>
+                <span class="text-chalk">BURRATAS AUX ACCORDS SURPRENANTS</span>
+                <span class="text-copper">✦</span>
+                <span class="text-brass">SALLE PRINCIPALE & CAVE VOÛTÉE AU SOUS-SOL</span>
+                <span class="text-copper">✦</span>
+                <!-- Duplication pour boucle infinie -->
+                <span class="text-chalk">CUISINE 100% FAIT MAISON</span>
+                <span class="text-copper">✦</span>
+                <span class="text-brass">PAIN BURGER NOIR À L'ENCRE DE SEICHE</span>
+                <span class="text-copper">✦</span>
+                <span class="text-chalk">FRITES DE PATATE DOUCE CROUSTILLANTES</span>
+                <span class="text-copper">✦</span>
+                <span class="text-brass">MAGRET DE CANARD AU MIEL & THYM</span>
+                <span class="text-copper">✦</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1 : L'ESPRIT DU LIEU (ÉDITORIAL & ARCHITECTURE) -->
+    <section id="esprit" class="py-24 border-b border-architect relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Triptyque Photo Brut -->
+                <div class="lg:col-span-6 grid grid-cols-2 gap-4 reveal">
+                    <div class="space-y-4">
+                        <div class="aspect-[4/5] border border-architect overflow-hidden cursor-pointer group"
+                             onclick="openLightboxByFile('672343284_1513742003650268_6145830795596393706_n.jpg', 'Assiette Créative du Chef')">
+                            <img data-img="672343284_1513742003650268_6145830795596393706_n.jpg"
+                                 src="Images/672343284_1513742003650268_6145830795596393706_n.jpg"
+                                 alt="Dressage du Chef"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        </div>
+                        <div class="p-5 bg-slateCard border border-architect">
+                            <span class="text-xs uppercase tracking-[0.2em] text-copper font-bold block">Côté Cave</span>
+                            <p class="font-display text-xl text-chalk mt-1">Une deuxième salle en sous-sol pour vos grandes tablées.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 pt-8">
+                        <div class="p-5 bg-copper text-white">
+                            <span class="text-xs uppercase tracking-[0.2em] text-ink font-bold block">Le Credo</span>
+                            <p class="font-display text-xl mt-1">Des produits bruts, des cuissons justes et le plaisir de recevoir.</p>
+                        </div>
+                        <div class="aspect-[4/5] border border-architect overflow-hidden cursor-pointer group"
+                             onclick="openLightboxByFile('688777249_1525172395840562_5709231759392021566_n.jpg', 'Magret de Canard Rôti au Miel & Thym')">
+                            <img data-img="688777249_1525172395840562_5709231759392021566_n.jpg"
+                                 src="Images/688777249_1525172395840562_5709231759392021566_n.jpg"
+                                 alt="Magret de Canard"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Texte Éditorial -->
+                <div class="lg:col-span-6 space-y-6 reveal">
+                    <span class="text-xs uppercase tracking-[0.3em] text-brass font-bold block">01 / L'Identité de la Maison</span>
+                    <h2 class="font-display text-4xl sm:text-5xl font-bold text-chalk leading-tight">
+                        L'âme d'un bistrot franc, la créativité d'une <span class="italic font-normal text-copper">cuisine d'auteur.</span>
+                    </h2>
+                    <p class="text-stoneMuted leading-relaxed">
+                        Installé au <strong>80 En Fournirue</strong>, à quelques pas de la Cathédrale de Metz, <em>Chez des Amis</em> porte bien son nom. On y vient pour déconnecter autour d'une planche apéritive, découvrir les associations audacieuses du Chef autour de la burrata, ou savourer une viande saisie à la perfection.
+                    </p>
+                    <p class="text-stoneMuted leading-relaxed">
+                        Chaque assiette est dressée minute en cuisine : de nos pains burgers façonnés à l'encre de seiche jusqu'à nos fameuses frites de patate douce et nos pâtisseries maison comme l'incontournable <em>Pousse-au-régime</em>.
+                    </p>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
+                        <div class="p-4 border border-architect bg-slateWarm">
+                            <span class="font-display text-2xl font-bold text-brass block">Fait Maison</span>
+                            <span class="text-xs text-stoneMuted">Cuisine de produits frais</span>
+                        </div>
+                        <div class="p-4 border border-architect bg-slateWarm">
+                            <span class="font-display text-2xl font-bold text-copper block">2 Ambiances</span>
+                            <span class="text-xs text-stoneMuted">Salle RDC & Cave en bas</span>
+                        </div>
+                        <div class="p-4 border border-architect bg-slateWarm col-span-2 sm:col-span-1">
+                            <span class="font-display text-2xl font-bold text-chalk block">Centre-Ville</span>
+                            <span class="text-xs text-stoneMuted">Parking St-Jacques à 70m</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2 : L'ARDOISE & LA CARTE DU BISTROT (SANS AUCUNE FORMULE) -->
+    <section id="ardoise" class="py-24 bg-slateWarm border-b border-architect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.3em] text-copper font-bold block mb-2">02 / La Carte du Moment</span>
+                    <h2 class="font-display text-4xl sm:text-6xl font-bold text-chalk">
+                        L'Ardoise <span class="italic font-normal text-brass">Chez des Amis</span>
+                    </h2>
+                </div>
+                <p class="text-sm text-stoneMuted max-w-md">
+                    Cliquez sur un plat de la carte pour admirer son dressage à droite ou l'ajouter à vos envies de réservation.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 items-start">
+                <!-- Colonne Gauche : Le Menu Typographique (8 cols) -->
+                <div class="lg:col-span-7 space-y-12 reveal">
+
+                    <!-- Catégorie 1 : Entrées & Partage -->
+                    <div>
+                        <div class="flex items-center gap-3 pb-3 mb-6 border-b border-brass/30">
+                            <i data-lucide="wine" class="w-5 h-5 text-copper"></i>
+                            <h3 class="font-display text-2xl font-bold uppercase tracking-wider text-brass">Entrées, Burratas & Planches à Partager</h3>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="group cursor-pointer p-3 -mx-3 hover:bg-slateCard transition border border-transparent hover:border-architect"
+                                 onmouseenter="previewDish('652440530_1488865539471248_1613849268101534632_n.jpg', 'Nos Burratas aux Accords Surprenants', 'Création phare : burrata entière ultra-crémeuse, garnitures de saison, herbes fraîches et huile parfumée.')"
+                                 onclick="toggleDishSelection('Burrata Créative du Moment')">
+                                <div class="flex items-baseline justify-between">
+                                    <h4 class="font-display text-xl font-semibold text-chalk group-hover:text-copper transition">Nos Burratas aux Accords Surprenants</h4>
+                                    <span class="menu-leader"></span>
+                                    <span class="text-xs uppercase tracking-widest text-brass font-bold shrink-0">Entrée Phare</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-stoneMuted mt-1">
+                                    Burrata crémeuse revisitée selon l'inspiration du Chef, déclinaisons salées, fruitées ou croquantes.
+                                </p>
+                            </div>
+
+                            <div class="group cursor-pointer p-3 -mx-3 hover:bg-slateCard transition border border-transparent hover:border-architect"
+                                 onmouseenter="previewDish('718689592_2950168275341112_4433639287091247439_n.jpg', 'Grande Planche Conviviale entre Amis', 'Idéale à l\'apéritif autour d\'un verre de vin ou d\'un cocktail maison.')"
+                                 onclick="toggleDishSelection('Planche Conviviale à Partager')">
+                                <div class="flex items-baseline justify-between">
+                                    <h4 class="font-display text-xl font-semibold text-chalk group-hover:text-copper transition">La Planche Conviviale à Partager</h4>
+                                    <span class="menu-leader"></span>
+                                    <span class="text-xs uppercase tracking-widest text-brass font-bold shrink-0">À Partager</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-stoneMuted mt-1">
+                                    Assortiment généreux de bouchées chaudes, mini burgers, charcuteries fines, antipasti et sauces maison.
+                                </p>
+                            </div>
+
+                            <div class="group cursor-pointer p-3 -mx-3 hover:bg-slateCard transition border border-transparent hover:border-architect"
+                                 onmouseenter="previewDish('754936250_1559029195682983_6616105678625692214_n.jpg', 'Entrée Fraîcheur du Marché', 'Travaillée minute avec les arrivages frais de la semaine.')"
+                                 onclick="toggleDishSelection('Entrée Fraîcheur du Marché')">
+                                <div class="flex items-baseline justify-between">
+                                    <h4 class="font-display text-xl font-semibold text-chalk group-hover:text-copper transition">L'Assiette Fraîcheur & Antipasti</h4>
+                                    <span class="menu-leader"></span>
+                                    <span class="text-xs uppercase tracking-widest text-stoneMuted font-bold shrink-0">Ardoise</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-stoneMuted mt-1">
+                                    Sélection d'entrées de saison, salades gourmandes et créations du marché.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Catégorie 2 : Burgers Signatures & Plats Cuisinés -->
+                    <div>
+                        <div class="flex items-center gap-3 pb-3 mb-6 border-b border-brass/30">
+                            <i data-lucide="flame" class="w-5 h-5 text-copper"></i>
+                            <h3 class="font-display text-2xl font-bold uppercase tracking-wider text-brass">Burgers Signatures & Plats du Chef</h3>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="group cursor-pointer p-3 -mx-3 hover:bg-slateCard transition border border-transparent hover:border-architect"
+                                 onmouseenter="previewDish('729412949_1571271014564033_6745270389870072008_n.jpg', 'Burger Signature au Pain Noir à l\'Encre de Seiche', 'Servi avec nos célèbres frites de patate douce croustillantes et salade fraîche.')"
+                                 onclick="toggleDishSelection('Burger Signature au Pain Noir')">
+                                <div class="flex items-baseline justify-between">
+                                    <h4 class="font-display text-xl font-semibold text-chalk group-hover:text-copper transition">Le Burger au Pain Noir (Encre de Seiche)</h4>
+                                    <span class="menu-leader"></span>
+                                    <span class="text-xs uppercase tracking-widest text-copper font-bold shrink-0">Incontournable</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-stoneMuted mt-1">
+                                    Pain bun artisanal noir à l'encre de seiche, steak de bœuf frais, fromage fondant, garniture gourmande et frites de patate douce.
+                                </p>
+                            </div>
+
+                            <div class="group cursor-pointer p-3 -mx-3 hover:bg-slateCard transition border border-transparent hover:border-architect"
+                                 onmouseenter="previewDish('726295181_2250229642445178_1843889474022208848_n.jpg', 'Burger Bistrot Brioché & Patate Douce', 'Généreux, fondant et accompagné de frites de patate douce maison.')"
+                                 onclick="toggleDishSelection('Burger Bistrot & Frites de Patate Douce')">
+                                <div class="flex items-baseline justify-between">
+                                    <h4 class="font-display text-xl font-semibold text-chalk group-hover:text-copper transition">Les Burgers Gourmands & Frites de Patate Douce</h4>
+                                    <span class="menu-leader"></span>
+                                    <span class="text-xs uppercase tracking-widest text-brass font-bold shrink-0">Fait Maison</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-stoneMuted mt-1">
+                                    Recettes signatures déclinées au bœuf, volaille ou fromage affiné, servies avec frites de patate douce croustillantes.
+                                </p>
+                            </div>
+
+                            <div class="group cursor-pointer p-3 -mx-3 hover:bg-slateCard transition border border-transparent hover:border-architect"
+                                 onmouseenter="previewDish('688777249_1525172395840562_5709231759392021566_n.jpg', 'Magret de Canard Rôti au Miel & Thym', 'Cuisson rosée maîtrisée et réduction parfumée au miel et thym frais.')"
+                                 onclick="toggleDishSelection('Magret de Canard au Miel & Thym')">
+                                <div class="flex items-baseline justify-between">
+                                    <h4 class="font-display text-xl font-semibold text-chalk group-hover:text-copper transition">Magret de Canard Rôti au Miel & Thym</h4>
+                                    <span class="menu-leader"></span>
+                                    <span class="text-xs uppercase tracking-widest text-brass font-bold shrink-0">Plat Signature</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-stoneMuted mt-1">
+                                    Magret entier saisi sur la peau, jus réduit au miel doux et thym, garniture gourmande du moment.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Catégorie 3 : Côté Boucher & Tradition Bistrot -->
+                    <div>
+                        <div class="flex items-center gap-3 pb-3 mb-6 border-b border-brass/30">
+                            <i data-lucide="utensils-crossed" class="w-5 h-5 text-copper"></i>
+                            <h3 class="font-display text-2xl font-bold uppercase tracking-wider text-brass">Côté Boucher & Grands Classiques</h3>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="group cursor-pointer p-3 -mx-3 hover:bg-slateCard transition border border-transparent hover:border-architect"
+                                 onmouseenter="previewDish('623800583_1451163636574772_839094870642444380_n.jpg', 'Entrecôte & Filet de Bœuf Saisis Minute', 'Viandes sélectionnées pour leur tendreté, accompagnées de sauces maison.')"
+                                 onclick="toggleDishSelection('Entrecôte ou Filet de Bœuf')">
+                                <div class="flex items-baseline justify-between">
+                                    <h4 class="font-display text-xl font-semibold text-chalk group-hover:text-copper transition">L'Entrecôte Grillée & Le Filet de Bœuf</h4>
+                                    <span class="menu-leader"></span>
+                                    <span class="text-xs uppercase tracking-widest text-brass font-bold shrink-0">Boucher</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-stoneMuted mt-1">
+                                    Pièces de bœuf tendres grillées selon votre cuisson, sauces maison et accompagnements au choix.
+                                </p>
+                            </div>
+
+                            <div class="group cursor-pointer p-3 -mx-3 hover:bg-slateCard transition border border-transparent hover:border-architect"
+                                 onmouseenter="previewDish('701019817_1539339697757165_7553117624825930373_n.jpg', 'Tartare de Bœuf Préparé Minute & Steak à Cheval', 'Les grands classiques du bistrot français travaillés dans les règles de l\'art.')"
+                                 onclick="toggleDishSelection('Tartare de Bœuf / Steak à Cheval')">
+                                <div class="flex items-baseline justify-between">
+                                    <h4 class="font-display text-xl font-semibold text-chalk group-hover:text-copper transition">Tartare de Bœuf & Steak à Cheval</h4>
+                                    <span class="menu-leader"></span>
+                                    <span class="text-xs uppercase tracking-widest text-stoneMuted font-bold shrink-0">Tradition</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-stoneMuted mt-1">
+                                    Assaisonnement équilibré préparé à la commande, frites maison et salade croquante.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Catégorie 4 : Desserts & Douceurs Maison -->
+                    <div>
+                        <div class="flex items-center gap-3 pb-3 mb-6 border-b border-brass/30">
+                            <i data-lucide="sparkles" class="w-5 h-5 text-copper"></i>
+                            <h3 class="font-display text-2xl font-bold uppercase tracking-wider text-brass">Les Desserts Pâtissiers Maison</h3>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="group cursor-pointer p-3 -mx-3 hover:bg-slateCard transition border border-transparent hover:border-architect"
+                                 onmouseenter="previewDish('785035046_1373832271565704_8195135738733446572_n.jpg', 'Le Célèbre « Pousse-au-Régime » & Le Finger', 'Nos créations sucrées signatures pour terminer le repas en beauté.')"
+                                 onclick="toggleDishSelection('Dessert Le Pousse-au-Régime / Finger')">
+                                <div class="flex items-baseline justify-between">
+                                    <h4 class="font-display text-xl font-semibold text-chalk group-hover:text-copper transition">Le « Pousse-au-Régime » & Le Finger Délicat</h4>
+                                    <span class="menu-leader"></span>
+                                    <span class="text-xs uppercase tracking-widest text-copper font-bold shrink-0">Star Sucre</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-stoneMuted mt-1">
+                                    Gourmandises chocolatées et pralinées ultra-généreuses entièrement réalisées sur place.
+                                </p>
+                            </div>
+
+                            <div class="group cursor-pointer p-3 -mx-3 hover:bg-slateCard transition border border-transparent hover:border-architect"
+                                 onmouseenter="previewDish('834724189_1658964359128031_6482638137052139193_n.jpg', 'Cheesecake New-Yorkais & Tarte aux Bleuets', 'Texture aérienne et fondante, coulis et fruits frais.')"
+                                 onclick="toggleDishSelection('Cheesecake New-Yorkais / Tarte aux Bleuets')">
+                                <div class="flex items-baseline justify-between">
+                                    <h4 class="font-display text-xl font-semibold text-chalk group-hover:text-copper transition">Cheesecake New-Yorkais & Tarte aux Bleuets</h4>
+                                    <span class="menu-leader"></span>
+                                    <span class="text-xs uppercase tracking-widest text-brass font-bold shrink-0">100% Maison</span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-stoneMuted mt-1">
+                                    Recettes authentiques et douceurs fruitées selon l'ardoise sucrée du jour.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Colonne Droite : Aperçu Visuel Sticky en Temps Réel (5 cols) -->
+                <div class="lg:col-span-5 lg:sticky lg:top-28 reveal">
+                    <div class="bg-slateCard border border-architect p-5 space-y-5">
+                        <div class="flex items-center justify-between text-xs uppercase tracking-widest text-brass border-b border-architect pb-3">
+                            <span>Aperçu de l'Assiette</span>
+                            <span class="text-copper font-bold">Cliquez un plat pour l'ajouter</span>
+                        </div>
+
+                        <div class="relative aspect-[4/3] overflow-hidden bg-ink border border-architect cursor-pointer"
+                             onclick="openCurrentPreviewLightbox()">
+                            <img id="menuPreviewImg"
+                                 data-img="729412949_1571271014564033_6745270389870072008_n.jpg"
+                                 src="Images/729412949_1571271014564033_6745270389870072008_n.jpg"
+                                 alt="Aperçu du plat"
+                                 class="w-full h-full object-cover transition duration-500">
+                            <span class="absolute bottom-3 right-3 bg-ink/85 text-brass text-[10px] uppercase tracking-widest px-3 py-1 border border-architect">
+                                Agrandir la photo
+                            </span>
+                        </div>
+
+                        <div>
+                            <h4 id="menuPreviewTitle" class="font-display text-2xl font-bold text-chalk">
+                                Burger Signature au Pain Noir à l'Encre de Seiche
+                            </h4>
+                            <p id="menuPreviewDesc" class="text-sm text-stoneMuted mt-2 leading-relaxed">
+                                Servi avec nos célèbres frites de patate douce croustillantes et salade fraîche.
+                            </p>
+                        </div>
+
+                        <div class="pt-3 border-t border-architect flex items-center justify-between">
+                            <span class="text-xs text-stoneMuted">Envie d'y goûter ?</span>
+                            <a href="#reserver" class="px-5 py-2.5 bg-copper text-white text-xs font-bold uppercase tracking-widest hover:bg-brass hover:text-ink transition">
+                                Réserver une table
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3 : GALERIE MAÇONNERIE (MASONRY) DE TOUTES LES PHOTOS -->
+    <section id="galerie" class="py-24 bg-ink border-b border-architect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 reveal">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.3em] text-brass font-bold block mb-2">03 / L'Assiette en Images</span>
+                    <h2 class="font-display text-4xl sm:text-6xl font-bold text-chalk">
+                        Sorti de <span class="italic font-normal text-copper">notre Cuisine</span>
+                    </h2>
+                </div>
+
+                <!-- Filtres francs -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterGallery('all')" class="gal-btn px-4 py-2.5 text-xs font-bold uppercase tracking-widest bg-copper text-white transition" data-filter="all">Tout Voir (24)</button>
+                    <button onclick="filterGallery('plats')" class="gal-btn px-4 py-2.5 text-xs font-bold uppercase tracking-widest bg-slateCard text-stoneMuted hover:text-chalk border border-architect transition" data-filter="plats">Burgers & Viandes</button>
+                    <button onclick="filterGallery('entrees')" class="gal-btn px-4 py-2.5 text-xs font-bold uppercase tracking-widest bg-slateCard text-stoneMuted hover:text-chalk border border-architect transition" data-filter="entrees">Burratas & Planches</button>
+                    <button onclick="filterGallery('desserts')" class="gal-btn px-4 py-2.5 text-xs font-bold uppercase tracking-widest bg-slateCard text-stoneMuted hover:text-chalk border border-architect transition" data-filter="desserts">Pâtisseries & Cocktails</button>
+                </div>
+            </div>
+
+            <!-- Grille dynamique au look éditorial -->
+            <div id="photoGalleryGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Généré par JS avec les 24 vraies photos -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4 : CARNET DE RÉSERVATION DE TABLE -->
+    <section id="reserver" class="py-24 bg-slateWarm border-b border-architect">
+        <div class="max-w-5xl mx-auto px-4 sm:px-8">
+            <div class="bg-ink border-2 border-brass/40 p-8 sm:p-12 lg:p-16 reveal">
+                <div class="grid lg:grid-cols-12 gap-10">
+                    <!-- Colonne Infos Réservation -->
+                    <div class="lg:col-span-5 space-y-6 border-b lg:border-b-0 lg:border-r border-architect pb-8 lg:pb-0 lg:pr-8">
+                        <span class="text-xs uppercase tracking-[0.3em] text-copper font-bold block">04 / Carnet de Table</span>
+                        <h2 class="font-display text-4xl font-bold text-chalk leading-tight">
+                            Réserver votre table <span class="italic font-normal text-brass">Chez des Amis</span>
+                        </h2>
+                        <p class="text-sm text-stoneMuted leading-relaxed">
+                            Pour un dîner en tête-à-tête, un repas entre amis ou une grande tablée dans notre <strong>salle voûtée au sous-sol</strong>, réservez directement par WhatsApp ou par téléphone.
+                        </p>
+
+                        <div class="space-y-4 pt-2 text-sm">
+                            <div class="p-4 bg-slateCard border border-architect">
+                                <span class="text-[10px] uppercase tracking-widest text-brass block">Ligne Directe Restaurant</span>
+                                <a href="tel:0612917128" class="font-display text-2xl font-bold text-chalk hover:text-copper transition whitespace-nowrap block mt-1">
+                                    06 12 91 71 28
+                                </a>
+                            </div>
+                            <div class="p-4 bg-slateCard border border-architect">
+                                <span class="text-[10px] uppercase tracking-widest text-brass block">Adresse</span>
+                                <p class="text-chalk font-semibold mt-1">80 En Fournirue, 57000 Metz</p>
+                                <p class="text-xs text-stoneMuted mt-0.5">Parking Saint-Jacques à 70 mètres</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Colonne Formulaire -->
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase tracking-widest text-stoneMuted mb-2">Votre Nom</label>
+                                <input type="text" id="guestName" placeholder="Ex : Jordan" class="w-full bg-slateCard border border-architect px-4 py-3.5 text-sm text-chalk focus:outline-none focus:border-brass">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase tracking-widest text-stoneMuted mb-2">Nombre de Couverts</label>
+                                <input type="number" id="guestCount" value="2" min="1" max="50" class="w-full bg-slateCard border border-architect px-4 py-3.5 text-sm text-chalk focus:outline-none focus:border-brass">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase tracking-widest text-stoneMuted mb-2">Date souhaitée</label>
+                                <input type="date" id="bookingDate" class="w-full bg-slateCard border border-architect px-3 py-3.5 text-sm text-chalk focus:outline-none focus:border-brass">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase tracking-widest text-stoneMuted mb-2">Service / Heure</label>
+                                <select id="bookingTime" class="w-full bg-slateCard border border-architect px-3 py-3.5 text-sm text-chalk focus:outline-none focus:border-brass">
+                                    <option>19h00</option>
+                                    <option>19h30</option>
+                                    <option selected>20h00</option>
+                                    <option>20h30</option>
+                                    <option>21h00</option>
+                                    <option>21h30</option>
+                                    <option>12h15 (Midi Jeu-Sam)</option>
+                                    <option>12h45 (Midi Jeu-Sam)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase tracking-widest text-stoneMuted mb-2">Ambiance souhaitée</label>
+                                <select id="roomPref" class="w-full bg-slateCard border border-architect px-3 py-3.5 text-sm text-chalk focus:outline-none focus:border-brass">
+                                    <option>Salle Principale (RDC)</option>
+                                    <option>Salle Cave Voûtée (Sous-Sol)</option>
+                                    <option>Table de Groupe / Privatisation</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase tracking-widest text-stoneMuted mb-2">Plats repérés sur l'Ardoise (Optionnel)</label>
+                            <div id="selectedDishesBox" class="min-h-[48px] p-3 bg-slateCard border border-architect flex flex-wrap gap-2 items-center">
+                                <span class="text-xs text-stoneMuted italic">Cliquez sur les plats de l'ardoise ci-dessus si vous souhaitez les mentionner...</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase tracking-widest text-stoneMuted mb-2">Message ou Précisions</label>
+                            <textarea id="bookingNotes" rows="2" placeholder="Allergies, anniversaire, chaise haute..." class="w-full bg-slateCard border border-architect p-3.5 text-sm text-chalk focus:outline-none focus:border-brass"></textarea>
+                        </div>
+
+                        <div class="pt-2 flex flex-wrap items-center gap-4">
+                            <button onclick="sendWhatsAppReservation()" class="flex-1 min-w-[240px] py-4 px-6 bg-copper hover:bg-brass hover:text-ink text-white font-bold text-xs uppercase tracking-[0.2em] transition flex items-center justify-center gap-3">
+                                <i data-lucide="message-square" class="w-4 h-4 shrink-0"></i>
+                                <span class="whitespace-nowrap">Confirmer par WhatsApp</span>
+                            </button>
+                            <a href="tel:0612917128" class="py-4 px-6 border border-architect hover:border-brass text-chalk font-bold text-xs uppercase tracking-[0.2em] transition whitespace-nowrap">
+                                Appeler Directement
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER : HORAIRES & ACCÈS -->
+    <footer id="acces" class="bg-ink py-16 text-stoneMuted">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 grid md:grid-cols-3 gap-12">
+            <div>
+                <span class="font-display text-3xl font-bold text-chalk block">
+                    CHEZ DES <span class="italic font-normal text-copper">AMIS</span>
+                </span>
+                <p class="text-sm mt-3 leading-relaxed">
+                    Bistrot créatif & cuisine française 100% fait maison au cœur de Metz. Burgers au pain noir, burratas, viandes et pâtisseries artisanales.
+                </p>
+                <div class="flex items-center gap-4 mt-6">
+                    <a href="https://www.facebook.com/search/top?q=Chez%20des%20amis%20Metz" target="_blank" class="px-4 py-2 bg-slateCard border border-architect text-xs uppercase tracking-widest text-chalk hover:border-brass transition">
+                        Facebook
+                    </a>
+                    <a href="https://www.instagram.com/chez.des.amis/" target="_blank" class="px-4 py-2 bg-slateCard border border-architect text-xs uppercase tracking-widest text-chalk hover:border-brass transition">
+                        Instagram
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-[0.25em] text-brass mb-4">Horaires d'Ouverture</h4>
+                <ul class="space-y-2 text-xs sm:text-sm">
+                    <li class="flex justify-between border-b border-architect pb-1.5"><span>Lundi</span> <span class="text-copper font-semibold">Fermé</span></li>
+                    <li class="flex justify-between border-b border-architect pb-1.5"><span>Mardi & Mercredi</span> <span class="text-chalk">19h00 – 23h00</span></li>
+                    <li class="flex justify-between border-b border-architect pb-1.5"><span>Jeudi & Vendredi</span> <span class="text-chalk">12h00 – 14h30 • 19h00 – 23h00</span></li>
+                    <li class="flex justify-between border-b border-architect pb-1.5"><span>Samedi</span> <span class="text-chalk">12h00 – 14h30 • 19h00 – 23h30</span></li>
+                    <li class="flex justify-between"><span>Dimanche</span> <span class="text-chalk">19h00 – 23h00</span></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-[0.25em] text-brass mb-4">Adresse & Contact</h4>
+                <p class="text-sm text-chalk font-semibold">80 En Fournirue, 57000 Metz</p>
+                <p class="text-xs mt-1">Quartier Cathédrale / Centre Historique (Parking St-Jacques à 70m)</p>
+                <a href="tel:0612917128" class="inline-flex items-center gap-2 mt-4 text-lg font-display font-bold text-copper hover:text-brass whitespace-nowrap">
+                    <i data-lucide="phone" class="w-4 h-4 shrink-0"></i>
+                    <span class="whitespace-nowrap">06 12 91 71 28</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX PLEIN ÉCRAN -->
+    <div id="lightboxModal" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center p-4" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-chalk hover:text-copper p-2">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <div class="max-w-4xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="" class="max-h-[78vh] w-auto border-2 border-brass/40 object-contain">
+            <p id="lightboxCaption" class="font-display text-2xl text-chalk mt-4 text-center"></p>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Les 24 vraies photos du sous-dossier Images/ (sans aucune mention de formules Noël/St-Valentin)
+        const curatedPhotos = [
+            { file: "729412949_1571271014564033_6745270389870072008_n.jpg", title: "Le Burger au Pain Noir à l'Encre de Seiche", cat: "plats", tag: "Signature" },
+            { file: "652440530_1488865539471248_1613849268101534632_n.jpg", title: "Burrata Crémeuse aux Accords Surprenants", cat: "entrees", tag: "Burrata" },
+            { file: "688777249_1525172395840562_5709231759392021566_n.jpg", title: "Magret de Canard Rôti au Miel & Thym", cat: "plats", tag: "Terroir" },
+            { file: "726295181_2250229642445178_1843889474022208848_n.jpg", title: "Burger Bistrot & Frites de Patate Douce", cat: "plats", tag: "Best-Seller" },
+            { file: "672343284_1513742003650268_6145830795596393706_n.jpg", title: "Dressage Minute du Chef", cat: "plats", tag: "Ardoise" },
+            { file: "718689592_2950168275341112_4433639287091247439_n.jpg", title: "Grande Planche à Partager entre Amis", cat: "entrees", tag: "Partage" },
+            { file: "785035046_1373832271565704_8195135738733446572_n.jpg", title: "Le Pousse-au-Régime & Douceurs Maison", cat: "desserts", tag: "Pâtisserie" },
+            { file: "701019817_1539339697757165_7553117624825930373_n.jpg", title: "Tartare au Couteau & Pièces du Boucher", cat: "plats", tag: "Boucher" },
+            { file: "834724189_1658964359128031_6482638137052139193_n.jpg", title: "Cheesecake New-Yorkais & Finger Délicat", cat: "desserts", tag: "Fait Maison" },
+            { file: "825278481_1725371805185958_6908858417611957620_n.jpg", title: "Création Bistronomique du Soir", cat: "plats", tag: "Cuisine d'Auteur" },
+            { file: "825278745_1913943866644266_699104484703726605_n.jpg", title: "Assiette Gourmande de Saison", cat: "plats", tag: "Fait Maison" },
+            { file: "841261086_4439829042827657_4595435811623685680_n.jpg", title: "Saveurs du Marché & Produits Bruts", cat: "plats", tag: "Fraîcheur" },
+            { file: "796471012_1734725521120355_974823961660543569_n.jpg", title: "Gourmandise Sucrée Dressée Minute", cat: "desserts", tag: "Douceur" },
+            { file: "754936250_1559029195682983_6616105678625692214_n.jpg", title: "Antipasti & Entrée Fraîcheur", cat: "entrees", tag: "Entrée" },
+            { file: "740533758_958300087232467_2891312943172228999_n.jpg", title: "Cocktails Signatures & Apéritif", cat: "desserts", tag: "Bar" },
+            { file: "623519536_1451209313236871_5427378067739983653_n.jpg", title: "Steak à Cheval & Garniture Maison", cat: "plats", tag: "Classique" },
+            { file: "623800583_1451163636574772_839094870642444380_n.jpg", title: "Entrecôte Grillée & Sauce du Chef", cat: "plats", tag: "Viande" },
+            { file: "586616465_1399195561771580_4312148166684862895_n.jpg", title: "Salade Croquante & Produits Frais", cat: "entrees", tag: "Fraîcheur" },
+            { file: "581958724_1392001405824329_2612799979472350863_n.jpg", title: "L'Assiette du Bistrot", cat: "plats", tag: "80 En Fournirue" },
+            { file: "605538858_1426348835722919_8559931986063152759_n.jpg", title: "Planche de Mini Burgers & Tapas", cat: "entrees", tag: "Entre Amis" },
+            { file: "601818505_1419208013103668_8546060599738348056_n.jpg", title: "Création Pâtissière aux Fruits", cat: "desserts", tag: "Sucré" },
+            { file: "599948942_1416904516667351_3297016817795769229_n.jpg", title: "Suggestion de l'Ardoise", cat: "plats", tag: "Du Jour" },
+            { file: "614755187_1435797978111338_781050072352257163_n.jpg", title: "Tarte aux Bleuets & Douceur Café", cat: "desserts", tag: "Dessert" },
+            { file: "11r4pYqmDmO9FNcMAeVBPL16m00X58sVr", realFile: "001 (49).jpg", title: "Sélection Gourmande Chez des Amis", cat: "entrees", tag: "Spécialité" }
+        ].map(item => ({ ...item, file: item.realFile || item.file }));
+
+        function createDarkBistroPlaceholder(title, subtitle) {
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+                <rect width="800" height="600" fill="#141210"/>
+                <rect x="24" y="24" width="752" height="552" fill="none" stroke="#E5C158" stroke-width="1.5" stroke-opacity="0.4"/>
+                <text x="400" y="250" text-anchor="middle" fill="#DC2626" font-family="Georgia, serif" font-size="26" letter-spacing="4">CHEZ DES AMIS • METZ</text>
+                <text x="400" y="320" text-anchor="middle" fill="#F4F1EA" font-family="Georgia, serif" font-size="32" font-weight="bold">${title.replace(/&/g, '&amp;')}</text>
+                <text x="400" y="375" text-anchor="middle" fill="#A39E93" font-family="sans-serif" font-size="16" letter-spacing="3">${subtitle.replace(/&/g, '&amp;')}</text>
+            </svg>`;
+            return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+        }
+
+        function bindSmartImageFallbacks(root = document) {
+            root.querySelectorAll('img[data-img]').forEach(img => {
+                const rawFile = img.getAttribute('data-img');
+                const altTitle = img.getAttribute('alt') || "Chez des Amis";
+                img.dataset.tryStage = "0";
+
+                img.onerror = function() {
+                    if (this.dataset.tryStage === "0") {
+                        this.dataset.tryStage = "1";
+                        this.src = rawFile;
+                    } else {
+                        this.onerror = null;
+                        this.src = createDarkBistroPlaceholder(altTitle, "80 EN FOURNIRUE • METZ");
+                    }
+                };
+
+                if (img.complete && img.naturalWidth === 0) {
+                    img.onerror();
+                }
+            });
+        }
+
+        // Prévisualisation interactive sur l'Ardoise
+        let currentPreviewFile = "729412949_1571271014564033_6745270389870072008_n.jpg";
+        let currentPreviewTitle = "Burger Signature au Pain Noir à l'Encre de Seiche";
+
+        function previewDish(file, title, desc) {
+            currentPreviewFile = file;
+            currentPreviewTitle = title;
+            const img = document.getElementById('menuPreviewImg');
+            img.setAttribute('data-img', file);
+            img.dataset.tryStage = "0";
+            img.src = "Images/" + file;
+            document.getElementById('menuPreviewTitle').textContent = title;
+            document.getElementById('menuPreviewDesc').textContent = desc;
+        }
+
+        function openCurrentPreviewLightbox() {
+            openLightboxByFile(currentPreviewFile, currentPreviewTitle);
+        }
+
+        // Galerie Maçonnerie asymétrique
+        function renderGallery(filter = 'all') {
+            const grid = document.getElementById('photoGalleryGrid');
+            const items = filter === 'all' ? curatedPhotos : curatedPhotos.filter(p => p.cat === filter);
+
+            grid.innerHTML = items.map((item, idx) => {
+                // Alternance de formats pour un vrai rythme architectural
+                const aspectClass = (idx % 5 === 0) ? "aspect-[4/5] sm:col-span-2 sm:row-span-2" : "aspect-[4/3]";
+                return `
+                    <div class="group relative border border-architect bg-slateCard overflow-hidden cursor-pointer ${aspectClass}"
+                         onclick="openLightboxByFile('${item.file.replace(/'/g, "\\'")}', '${item.title.replace(/'/g, "\\'")}')">
+                        <img data-img="${item.file}" src="Images/${item.file}" alt="${item.title}"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent opacity-90 flex flex-col justify-between p-4">
+                            <div class="flex justify-end">
+                                <span class="bg-ink/90 border border-architect text-brass text-[10px] font-bold uppercase tracking-widest px-2.5 py-1">
+                                    ${item.tag}
+                                </span>
+                            </div>
+                            <div>
+                                <h4 class="font-display text-lg sm:text-xl font-bold text-chalk leading-snug group-hover:text-copper transition">
+                                    ${item.title}
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            bindSmartImageFallbacks(grid);
+        }
+
+        function filterGallery(cat) {
+            document.querySelectorAll('.gal-btn').forEach(btn => {
+                if (btn.dataset.filter === cat) {
+                    btn.className = "gal-btn px-4 py-2.5 text-xs font-bold uppercase tracking-widest bg-copper text-white transition";
+                } else {
+                    btn.className = "gal-btn px-4 py-2.5 text-xs font-bold uppercase tracking-widest bg-slateCard text-stoneMuted hover:text-chalk border border-architect transition";
+                }
+            });
+            renderGallery(cat);
+        }
+
+        // Sélection de plats à la carte pour la réservation
+        const selectedDishes = new Set();
+        function toggleDishSelection(dishName) {
+            if (selectedDishes.has(dishName)) {
+                selectedDishes.delete(dishName);
+            } else {
+                selectedDishes.add(dishName);
+            }
+            renderSelectedDishes();
+        }
+
+        function renderSelectedDishes() {
+            const box = document.getElementById('selectedDishesBox');
+            if (selectedDishes.size === 0) {
+                box.innerHTML = `<span class="text-xs text-stoneMuted italic">Cliquez sur les plats de l'ardoise ci-dessus si vous souhaitez les mentionner...</span>`;
+                return;
+            }
+            box.innerHTML = Array.from(selectedDishes).map(d => `
+                <span class="inline-flex items-center gap-2 px-3 py-1 bg-copper text-white text-xs font-bold uppercase tracking-wider">
+                    ${d}
+                    <button onclick="toggleDishSelection('${d.replace(/'/g, "\\'")}')" class="hover:text-ink">×</button>
+                </span>
+            `).join('');
+        }
+
+        function sendWhatsAppReservation() {
+            const name = document.getElementById('guestName').value || 'Client';
+            const count = document.getElementById('guestCount').value;
+            const date = document.getElementById('bookingDate').value || 'À définir';
+            const time = document.getElementById('bookingTime').value;
+            const room = document.getElementById('roomPref').value;
+            const notes = document.getElementById('bookingNotes').value;
+            const dishes = Array.from(selectedDishes).join(', ');
+
+            let msg = `Bonjour Chez des Amis !\n\nJe souhaite réserver une table :\n- Nom : ${name}\n- Couverts : ${count} personnes\n- Date & Heure : ${date} à ${time}\n- Espace : ${room}`;
+            if (dishes) msg += `\n- Envies sur la carte : ${dishes}`;
+            if (notes) msg += `\n- Précisions : ${notes}`;
+            msg += `\n\nMerci et à bientôt !`;
+
+            window.open(`https://wa.me/33612917128?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function openLightboxByFile(fileName, title) {
+            const modal = document.getElementById('lightboxModal');
+            const img = document.getElementById('lightboxImg');
+            img.dataset.tryStage = "0";
+            img.onerror = function() {
+                if (this.dataset.tryStage === "0") {
+                    this.dataset.tryStage = "1";
+                    this.src = fileName;
+                } else {
+                    this.onerror = null;
+                    this.src = createDarkBistroPlaceholder(title, "CHEZ DES AMIS • METZ");
+                }
+            };
+            img.src = "Images/" + fileName;
+            document.getElementById('lightboxCaption').textContent = title;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        bindSmartImageFallbacks();
+        renderGallery('all');
+    </script>
+</body>
+</html>
