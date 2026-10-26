@@ -1,0 +1,34 @@
+{
+  "name": "Chez des Amis — Restaurant Bistrot Fait Maison à Metz",
+  "short_name": "Chez des Amis",
+  "description": "Cuisine de bistrot 100 % fraîche et faite maison au 80 En Fournirue à Metz (à 100m de la Cathédrale). #BonAppetit",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FAF6F0",
+  "theme_color": "#C81018",
+  "lang": "fr-FR",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

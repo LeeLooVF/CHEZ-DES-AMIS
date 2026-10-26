@@ -1,0 +1,34 @@
+====================================================================
+PACK COMPLET PRÊT À DÉPLOYER — RESTAURANT "CHEZ DES AMIS" (METZ)
+====================================================================
+
+Voici tous les fichiers générés et configurés pour votre site :
+
+1. index.html (MIS À JOUR)
+   - Intègre toutes les balises SEO, Open Graph (aperçu WhatsApp/Facebook/Discord),
+     les liens vers les favicons, le manifest.json, le Schema.org Restaurant (Google Local SEO),
+     ainsi que le lien vers les Mentions Légales dans le pied de page.
+   - Conserve 100% de votre code, vos 24 photos de plats et vos 18 photos "Oeuvre (1).jpg" à "Oeuvre (18).jpg".
+
+2. Pack d'icônes & Aperçu Social :
+   - favicon.ico (multi-tailles 16x16, 32x32, 48x48, 64x64)
+   - favicon.png (64x64)
+   - favicon.svg (vectoriel ultra-net fidèle au logo)
+   - apple-touch-icon.png (180x180 pour iPhone/iPad)
+   - icon-192.png & icon-512.png (pour Android / Web App)
+   - og-image.jpg & og-image.png (1200x630px : la grande vignette qui s'affiche quand on partage le lien sur WhatsApp ou Facebook)
+
+3. Fichiers techniques & SEO :
+   - manifest.json (configuration mobile Android/iOS aux couleurs #FAF6F0 et #C81018)
+   - robots.txt (autorise Google à indexer tout le site)
+   - sitemap.xml (plan du site pour Google Search Console)
+
+4. Pages complémentaires au design du bistrot :
+   - 404.html (page d'erreur personnalisée — reconnue automatiquement par Cloudflare Pages !)
+   - mentions-legales.html (mentions légales complètes + RGPD sans cookies traceurs)
+
+--------------------------------------------------------------------
+COMMENT L'INSTALLER DANS VOTRE DOSSIER ?
+--------------------------------------------------------------------
+- Décompressez simplement tous ces fichiers à la racine de votre dossier (là où se trouvent votre index.html et vos photos).
+- Note : Si vous souhaitez conserver vos propres fichiers "favicon.ico", "favicon.png" et "apple-touch-icon.png" déjà présents dans votre dossier, vous pouvez garder les vôtres ou les remplacer par ceux du pack (les noms sont strictement identiques).
